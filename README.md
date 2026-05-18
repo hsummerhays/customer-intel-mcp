@@ -39,6 +39,16 @@ npm run build
 
 ---
 
+## Deployment Modes
+
+- Local stdio MCP (Claude Desktop)
+- Local SSE bridge
+- Docker container
+- Cloud-hosted API gateway
+- AWS ECS deployment
+
+---
+
 ## Connect to Claude Desktop
 
 Open your Claude Desktop config file:
@@ -81,7 +91,19 @@ claude mcp list
 
 ---
 
-## Connect to ChatGPT
+## Connect to ChatGPT (Experimental)
+
+ChatGPT support for external MCP-style tool connectors is evolving and may change over time.
+
+Unlike Claude Desktop, ChatGPT cannot directly connect to a local stdio MCP server. To integrate with ChatGPT, you must expose the server through an HTTP/SSE-compatible endpoint accessible from the public internet.
+
+Current approaches include:
+- OpenAI custom connectors/actions
+- SSE bridge adapters
+- lightweight HTTP wrapper services
+- API gateway integrations
+
+This project can be adapted for ChatGPT integrations using an SSE transport layer and a secure HTTPS tunnel or cloud deployment.
 
 ChatGPT supports connecting to custom MCP servers via **SSE (Server-Sent Events)** over a secure public URL (HTTP/HTTPS). Since ChatGPT runs in the cloud and cannot connect directly to a local `stdio` process on your machine, you must run it with an SSE transport and expose it to the internet using a tunneling tool (like **ngrok**).
 
@@ -104,7 +126,7 @@ Copy the generated public HTTPS URL (e.g., `https://your-tunnel-subdomain.ngrok-
    * **URL:** Your public HTTPS tunnel URL (e.g., `https://your-tunnel-subdomain.ngrok-free.app/sse`)
 5. Check **"I trust this application"** and click **Save**.
 
-ChatGPT will automatically discover the tools (`search_customer`, `search_customers_batch`, `get_customer_summary`) and let you interact with them directly!
+ChatGPT may automatically detect compatible tools depending on the connector configuration and current OpenAI platform capabilities. For this MCP server, this includes the `search_customer`, `search_customers_batch`, and `get_customer_summary` tools, allowing you to interact with them directly.
 
 ---
 
@@ -170,3 +192,15 @@ customer-intel-mcp/
 ├── tsconfig.json
 └── README.md
 ```
+
+---
+
+## Planned Features
+
+- Structured JSON responses
+- CRM integrations
+- Vector memory / retrieval
+- Multi-provider search orchestration
+- AWS deployment support
+- Authentication & rate limiting
+- Multi-tenant support
