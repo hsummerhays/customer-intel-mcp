@@ -160,21 +160,21 @@ When calling `search_customer` or `search_customers_batch`, you can set a `focus
 
 ## Development
 
-Run the server directly without building:
+Run the server directly from [src/index.ts](./src/index.ts) without building:
 
 ```bash
 npm run dev
 ```
 
-Test via MCP Inspector:
+Test the compiled entry point [build/index.js](./build/index.js) via the Model Context Protocol Inspector:
 
 ```bash
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Set your API key first:
-```bash
-export TAVILY_API_KEY=your_key_here
+Or on Windows PowerShell (setting the API key first):
+```powershell
+$env:TAVILY_API_KEY="your_key_here"
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
@@ -182,16 +182,11 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 ## File Structure
 
-```
-customer-intel-mcp/
-├── src/
-│   └── index.ts        # MCP server source (TypeScript)
-├── build/
-│   └── index.js        # Compiled output (run this)
-├── package.json
-├── tsconfig.json
-└── README.md
-```
+- [src/index.ts](./src/index.ts) — MCP server source code (TypeScript)
+- [build/index.js](./build/index.js) — Compiled JavaScript output
+- [package.json](./package.json) — Project configuration, scripts, and dependencies
+- [tsconfig.json](./tsconfig.json) — TypeScript compiler options
+- [README.md](./README.md) — Documentation and guide
 
 ---
 
@@ -204,3 +199,4 @@ customer-intel-mcp/
 - AWS deployment support
 - Authentication & rate limiting
 - Multi-tenant support
+
